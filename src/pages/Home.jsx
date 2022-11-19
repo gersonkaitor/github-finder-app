@@ -1,8 +1,11 @@
+import UserResult from "../components/users/UserResult"
+
 function Home() {
   return (
-    <div>
-      <h1 className="text-6xl">Welcome</h1>
-    </div>
+    <>
+      {/* serach component */}
+      <UserResult/>
+    </>
   )
 }
 
