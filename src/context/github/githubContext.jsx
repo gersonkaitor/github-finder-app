@@ -19,17 +19,20 @@ export const GithubProvider = ({ children }) => {
     setLoading();
 
     const params = new URLSearchParams({
-      q : text
-    })
+      q: text,
+    });
     const response = await fetch(`${GITHUB_URL}/search/users?${params}`);
 
-    const {items} = await response.json();
+    const { items } = await response.json();
 
     dispatch({
       type: "GET_USERS",
       payload: items,
     });
   };
+
+  // Clear user
+  const clearUsers = () => dispatch({ type: "CLEAR_USERS" });
 
   // Set Loading
   const setLoading = () => dispatch({ type: "SET_LOADING" });
@@ -40,6 +43,7 @@ export const GithubProvider = ({ children }) => {
         users: state.users,
         isLoading: state.isLoading,
         searchUsers,
+        clearUsers,
       }}
     >
       {children}
