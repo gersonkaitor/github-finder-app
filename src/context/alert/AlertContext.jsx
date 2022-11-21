@@ -12,7 +12,7 @@ export const AlertProvider = ({ children }) => {
   const setAlert = (msg, type) => {
     dispatch({
       type: "SET_ALERT",
-      payload: (msg, type),
+      payload: {msg, type},
     });
 
     setTimeout(() => {
