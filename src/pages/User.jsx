@@ -1,10 +1,10 @@
+import { useContext, useEffect } from "react";
 import { FaCode, FaStore, FaUserFriends, FaUsers } from "react-icons/fa";
-import { useEffect, useContext } from "react";
-import { useParams, Link } from "react-router-dom";
-import GitHubContext from "../context/github/GithubContext";
-import { getUser, getRepos } from "../context/github/GithubActions";
-import RepoList from "../components/repos/RepoList";
+import { Link, useParams } from "react-router-dom";
 import Spinner from "../components/layout/Spinner";
+import RepoList from "../components/repos/RepoList";
+import { getUserAndRepos } from "../context/github/GithubActions";
+import GitHubContext from "../context/github/GithubContext";
 
 function User() {
   const { user, isLoading, repos, dispatch } = useContext(GitHubContext);
@@ -13,11 +13,8 @@ function User() {
   useEffect(() => {
     dispatch({type: "SET_LOADING"})
    const getUserData = async() =>{
-      const userData = await getUser(params.login)
-      dispatch({type: "GET_USER", payload: userData})
-
-      const userRepoData = await getRepos(params.login)
-      dispatch({type: "GET_REPOS", payload: userRepoData})
+      const userData = await getUserAndRepos(params.login)
+      dispatch({type: 'GET_USER_AND_REPOS', payload: userData})
    }
    getUserData()
   }, [dispatch, params.login]);
@@ -79,7 +76,7 @@ function User() {
                 </h1>
                 <p>{bio}</p>
                 <div className="mt-4 card-actions">
-                    <a href={html_url} traget="_blank" rel='noreferrer'
+                    <a href={html_url} target="_blank" rel='noreferrer'
                     className="btn btn-outline"
                     >
                         Visit Github Profile
