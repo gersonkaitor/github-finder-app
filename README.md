@@ -1,4 +1,4 @@
-Deploy in [link](https://github-finder-app-eight-theta.vercel.app/)
+## Deploy in [link](https://github-finder-app-eight-theta.vercel.app/)
 
 # Getting Started with Create React App
 
